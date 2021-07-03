@@ -1,0 +1,17 @@
+{
+  "name": "pay-chart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Max Segale",
+  "license": "ISC",
+  "bin": {
+    "pay-chart": "./bin/index.js"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^2.7.570"
+  }
+}
