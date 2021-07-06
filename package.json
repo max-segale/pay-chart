@@ -1,7 +1,7 @@
 {
   "name": "pay-chart",
   "version": "1.0.0",
-  "description": "A Node.js app for reading PDF paystubs.",
+  "description": "A Node.js app for reading PDF paystubs and making a chart.",
   "type": "module",
   "main": "bin/index.js",
   "scripts": {
