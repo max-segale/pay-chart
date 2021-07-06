@@ -1,6 +1,6 @@
-const pdfjsLib = require('pdfjs-dist/es5/build/pdf.js');
+import pdfjsLib from 'pdfjs-dist/es5/build/pdf.js';
 
-exports.pdfContent = async (path, file) => {
+export async function pdfContent(path, file) {
 
   // Get document content
   const loadingTask = pdfjsLib.getDocument(`${path}/${file}`);
@@ -20,4 +20,4 @@ exports.pdfContent = async (path, file) => {
 
   return content;
 
-};
+}

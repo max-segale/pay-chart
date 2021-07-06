@@ -1,6 +1,6 @@
-const { readdir } = require('fs/promises');
+import { readdir } from 'fs/promises';
 
-exports.fileList = async (path, type) => {
+export async function fileList(path, type) {
   try {
     
     // Get filenames in folder
@@ -18,4 +18,4 @@ exports.fileList = async (path, type) => {
   } catch (err) {
     console.error(err);
   }
-};
+}

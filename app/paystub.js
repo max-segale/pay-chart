@@ -44,7 +44,7 @@ class Paystub {
   }
 }
 
-exports.payRead = (content) => {
+export function payRead(content) {
 
   // Filter out blank text items
   const contentItems = content.items.filter((item) => {
@@ -122,4 +122,4 @@ exports.payRead = (content) => {
 
   return paystub;
   
-};
+}

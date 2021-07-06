@@ -1,6 +1,6 @@
-const { fileList } = require('./files.js');
-const { pdfContent } = require('./pdf.js');
-const { payRead } = require('./paystub.js');
+import { fileList } from './files.js';
+import { pdfContent } from './pdf.js';
+import { payRead } from './paystub.js';
 
 const path = '/Users/maxwell/Documents/paystubs';
 const payList = [];
