@@ -1,6 +1,6 @@
 import { fileList } from './files.js';
 import { pdfContent } from './pdf.js';
-import { stubRead } from './paystub.js';
+import { readStub } from './reader.js';
 
 const path = '/Users/maxwell/Documents/paystubs';
 
@@ -21,7 +21,7 @@ fileList(path, 'pdf').then((files) => {
   const promises = [];
   for (const file of files) {
     let promise = pdfContent(path, file).then((content) => {
-      const paystub = stubRead(content);
+      const paystub = readStub(content);
       stubList.push(paystub);
     });
     promises.push(promise);
