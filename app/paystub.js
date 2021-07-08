@@ -44,8 +44,7 @@ class Paystub {
   }
 }
 
-export function payRead(content) {
-
+export function stubRead(content) {
   // Filter out blank text items
   const contentItems = content.items.filter((item) => {
     const text = item.str.trim();
@@ -58,7 +57,6 @@ export function payRead(content) {
       y: parseInt(item.transform[5])
     };
   });
-
   // Arrange text items into lines
   const lineText = {};
   for (const item of contentItems) {
@@ -68,16 +66,13 @@ export function payRead(content) {
       lineText[item.y] = [item.text];
     }
   }
-
   // Sort lines into descending order
   const linePos = Object.keys(lineText);
   linePos.sort((a, b) => {
     return b - a;
   });
-
   // Create new paystub object
   const paystub = new Paystub();
-
   // Loop through lines of text
   for (let l = 0; l < linePos.length; l += 1) {
     let thisLine = lineText[linePos[l]];
@@ -86,12 +81,10 @@ export function payRead(content) {
     let idItem = thisLine.find((item) => {
       return item.startsWith('Employee ID:');
     });
-
     // Set type based on id number
     if (idItem) {
       paystub.addType(idItem.split(' ')[2]);
     }
-
     // Find data based on type
     if (paystub.type === 'ROBERT_HALF') {
       if (lineStart === 'Week Begin Dt') {
@@ -113,13 +106,10 @@ export function payRead(content) {
         paystub.addAmount(lineStart.split (' ')[2]);
       }
     }
-
     // Finish after all important data found
     if (paystub.type && paystub.company && paystub.date && paystub.amount) {
       break;
     }
   }
-
   return paystub;
-  
 }
