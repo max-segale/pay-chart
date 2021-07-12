@@ -2,13 +2,14 @@ import { readdir } from 'fs/promises';
 
 export async function fileList(path, type) {
   try {
-    // Get filenames in folder
+    // Get filenames in directory
     let files = await readdir(path);
 
     // Filter by file type
     if (type) {
+      const pattern = new RegExp(`.${type}$`, 'i');
       files = files.filter((file) => {
-        return file.endsWith(`.${type}`);
+        return file.match(pattern);
       });
     }
 
