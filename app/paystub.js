@@ -10,10 +10,10 @@ export class Paystub {
   addType(id) {
     switch(id) {
       case '3022647439':
-        this.type = 'ROBERT_HALF';
+        this.type = 'robert_half';
         break;
       case '3660856':
-        this.type = 'INSPERITY';
+        this.type = 'insperity';
         break;
     }
   }

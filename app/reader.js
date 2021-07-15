@@ -42,7 +42,7 @@ export function readStub(content) {
       paystub.addType(idItem.split(' ')[2]);
     }
     // Find data based on type
-    if (paystub.type === 'ROBERT_HALF') {
+    if (paystub.type === 'robert_half') {
       if (lineStart === 'Week Begin Dt') {
         paystub.addDate(nextLine[1]);
         paystub.addCompany(nextLine[2].split(' ')[0]);
@@ -53,7 +53,7 @@ export function readStub(content) {
           paystub.addAmount(nextLine[5]);
         }
       }
-    } else if (paystub.type === 'INSPERITY') {
+    } else if (paystub.type === 'insperity') {
       if (lineStart.startsWith('Company:')) {
         paystub.addCompany(lineStart.split(' ')[2]);
       } else if (thisLine[1]?.startsWith('Pay Period:')) {
