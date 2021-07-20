@@ -30,7 +30,7 @@ export function readStub(content) {
   // Create new paystub object
   const paystub = new Paystub();
   // Loop through lines of text
-  for (let l = 0; l < linePos.length; l += 1) {
+  for (let l = 0; l < linePos.length; l++) {
     let thisLine = lineText[linePos[l]];
     let nextLine = lineText[linePos[l + 1]];
     let lineStart = thisLine[0];
