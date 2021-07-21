@@ -4,19 +4,19 @@ export function datePeriods(start, end, interval) {
   const last = new Date(end);
   let fnName = null;
   // Set beginning of first period
-  first.setUTCHours(0);
+  first.setHours(0);
   if (interval === 'year' || interval === 'month') {
-    first.setUTCDate(1);
+    first.setDate(1);
   }
   if (interval === 'year') {
-    first.setUTCMonth(0);
+    first.setMonth(0);
     fnName = 'FullYear';
   } else if (interval === 'month') {
     fnName = 'Month';
   }
   // Dynamic function names for date iteration
-  const getFn = 'getUTC' + fnName;
-  const setFn = 'setUTC' + fnName;
+  const getFn = 'get' + fnName;
+  const setFn = 'set' + fnName;
   while (first < last) {
     periods.push(new Date(first.valueOf()));
     // Move to next period
