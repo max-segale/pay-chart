@@ -1,6 +1,7 @@
 import { Paystub } from './paystub.js';
 
 export function readStub(content) {
+  const paystub = new Paystub();
   // Filter out blank text items
   const contentItems = content.items.filter((item) => {
     const text = item.str.trim();
@@ -27,9 +28,7 @@ export function readStub(content) {
   linePos.sort((a, b) => {
     return b - a;
   });
-  // Create new paystub object
-  const paystub = new Paystub();
-  // Loop through lines of text
+  // Check each line
   for (let l = 0; l < linePos.length; l++) {
     let thisLine = lineText[linePos[l]];
     let nextLine = lineText[linePos[l + 1]];

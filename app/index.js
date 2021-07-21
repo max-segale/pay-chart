@@ -23,14 +23,13 @@ fileList(path, type).then((files) => {
   }
   // After all content has been read
   Promise.all(promises).then(() => {
-    return stubList.sort((a, b) => {
+    stubList.sort((a, b) => {
       return a.date - b.date;
     });
-  }).then((stubList) => {
+  }).then(() => {
     const firstDate = stubList[0].date.valueOf();
     const lastDate = stubList[stubList.length - 1].date.valueOf();
     return datePeriods(firstDate, lastDate, interval);
-  }).then((payPeriods) => {
-    return dateMatch(stubList, payPeriods);
-  }).then(payDisplay);
+  }).then((payPeriods) => dateMatch(stubList, payPeriods))
+    .then((payDates) => payDisplay(payDates, interval));
 });
