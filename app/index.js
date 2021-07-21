@@ -4,32 +4,35 @@ import { readStub } from './reader.js';
 import { datePeriods, dateMatch } from './dates.js';
 import { payDisplay } from './display.js';
 
-const path = '/Users/maxwell/Documents/Paystubs';
-const type = 'pdf';
-const interval = 'month';
+(function () {
+  const path = '/Users/maxwell/Documents/Paystubs';
+  const type = 'pdf';
+  const interval = 'month';
+  const paystubs = [];
+  const addStub = (content) => {
+    const paystub = readStub(content);
+    paystubs.push(paystub);
+  };
+  const sortDates = () => {
+    paystubs.sort((a, b) => a.date - b.date);
+    const firstDate = paystubs[0].date.valueOf();
+    const lastDate = paystubs[paystubs.length - 1].date.valueOf();
+    const payPeriods = datePeriods(firstDate, lastDate, interval);
+    return dateMatch(paystubs, payPeriods);
+  };
+  const processContent = () => {
+    const payDates = sortDates();
+    payDisplay(payDates, interval);
+  };
+  const readFiles = (files) => {
+    const promises = [];
+    for (const file of files) {
+      let promise = pdfContent(path, file).then(addStub);
+      promises.push(promise);
+    }
+    Promise.all(promises).then(processContent);
+  };
 
-// Get list of PDF files in directory
-fileList(path, type).then((files) => {
-  const stubList = [];
-  const promises = [];
-  for (const file of files) {
-    // Get text content
-    let promise = pdfContent(path, file).then((content) => {
-      // Create paystub object
-      const paystub = readStub(content);
-      stubList.push(paystub);
-    });
-    promises.push(promise);
-  }
-  // After all content has been read
-  Promise.all(promises).then(() => {
-    stubList.sort((a, b) => {
-      return a.date - b.date;
-    });
-  }).then(() => {
-    const firstDate = stubList[0].date.valueOf();
-    const lastDate = stubList[stubList.length - 1].date.valueOf();
-    return datePeriods(firstDate, lastDate, interval);
-  }).then((payPeriods) => dateMatch(stubList, payPeriods))
-    .then((payDates) => payDisplay(payDates, interval));
-});
+  // Get files in directory, read content
+  fileList(path, type).then(readFiles);
+}());
