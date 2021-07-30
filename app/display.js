@@ -13,17 +13,13 @@ export function payDisplay(payDates, dateFormat) {
     style: 'currency',
     currency: 'USD'
   });
-  let totalPay = 0;
   payDates.forEach((datePay) => {
-    let displayDate = '';
-    let pay = 0;
-    displayDate = date.format(datePay.date);
-    for (let p = 0; p < datePay.pay.length; p++) {
-
-      pay += datePay.pay[p].amount;
-    }
-    console.log(displayDate, dollars.format(pay));
-    totalPay += pay;
+    let dateAmount = datePay.pay
+      .map((stub) => stub.amount)
+      .reduce((total, num) => total + num, 0);
+    console.log(
+      calendar.format(datePay.date),
+      dollars.format(dateAmount)
+    );
   });
-  console.log(dollars.format(totalPay));
 }
