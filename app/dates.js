@@ -38,7 +38,7 @@ export function dateMatch(paystubs, payPeriods) {
     };
     for (let s = 0; s < paystubs.length; s++) {
       // Match paystubs in this pay period
-      if (paystubs[s].date > payPeriods[p]
+      if (paystubs[s].date >= payPeriods[p]
         && (paystubs[s].date < payPeriods[p + 1] || p === payPeriods.length - 1)) {
         datePay.pay.push(paystubs[s]);
       }
