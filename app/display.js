@@ -2,10 +2,13 @@ export function payDisplay(payDates, dateFormat) {
   const dateOptions = { 
     year: 'numeric',
   };
-  if (dateFormat === 'month') {
+  if (dateFormat === 'month' || dateFormat === 'week') {
     dateOptions.month = 'short';
   }
-  const date = new Intl.DateTimeFormat('en-US', dateOptions);
+  if (dateFormat === 'week') {
+    dateOptions.day = 'numeric';
+  }
+  const calendar = new Intl.DateTimeFormat('en-US', dateOptions);
   const dollars = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'

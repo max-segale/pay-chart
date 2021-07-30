@@ -2,6 +2,7 @@ export function datePeriods(start, end, interval) {
   const periods = [];
   const first = new Date(start);
   const last = new Date(end);
+  let i = 1;
   let fnName = null;
   // Set beginning of first period
   first.setHours(0);
@@ -9,10 +10,13 @@ export function datePeriods(start, end, interval) {
     first.setDate(1);
   }
   if (interval === 'year') {
-    first.setMonth(0);
     fnName = 'FullYear';
+    first.setMonth(0);
   } else if (interval === 'month') {
     fnName = 'Month';
+  } else if (interval === 'week') {
+    fnName = 'Date';
+    i = 7;
   }
   // Dynamic function names for date iteration
   const getFn = 'get' + fnName;
@@ -20,7 +24,7 @@ export function datePeriods(start, end, interval) {
   while (first < last) {
     periods.push(new Date(first.valueOf()));
     // Move to next period
-    first[setFn](first[getFn]() + 1);
+    first[setFn](first[getFn]() + i);
   }
   return periods;
 }
