@@ -1,6 +1,6 @@
 export function payDisplay(payDates, dateFormat) {
   // Set date format options
-  const dateOptions = { 
+  const dateOptions = {
     year: 'numeric',
   };
   if (dateFormat === 'month' || dateFormat === 'week') {
@@ -13,16 +13,16 @@ export function payDisplay(payDates, dateFormat) {
   // Set payment format options
   const dollars = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD'
+    currency: 'USD',
   });
   // Display total payment amount for date
   payDates.forEach((datePay) => {
-    let dateAmount = datePay.pay
-      .map((stub) => stub.amount)
-      .reduce((total, num) => total + num, 0);
+    let dateAmount = datePay.pay.
+      map((stub) => stub.amount).
+      reduce((total, num) => total + num, 0);
     console.log(
       calendar.format(datePay.date),
-      dollars.format(dateAmount)
+      dollars.format(dateAmount),
     );
   });
 }

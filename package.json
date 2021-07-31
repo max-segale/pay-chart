@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "pdfjs-dist": "^2.7.570"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0"
   }
 }

@@ -11,7 +11,7 @@ export function readStub(content) {
     return {
       text: item.str.replace(/\s+/g, ' ').trim(),
       x: parseInt(item.transform[4]),
-      y: parseInt(item.transform[5])
+      y: parseInt(item.transform[5]),
     };
   });
   // Arrange text items into lines
