@@ -4,9 +4,10 @@ import { readStub } from './reader.js';
 import { datePeriods, dateMatch } from './dates.js';
 import { payDisplay } from './display.js';
 
+const args = process.argv.slice(2);
+const interval = args[0] || 'month';
 const path = '/Users/maxwell/Documents/Paystubs';
 const type = 'pdf';
-const interval = 'month';
 const paystubs = [];
 
 function payDateSort() {
