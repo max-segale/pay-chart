@@ -4,7 +4,7 @@ export function datePeriods(start, end, interval) {
   const last = new Date(end);
   let i = 1;
   let fnName = null;
-  // Set beginning of first period
+  // Set beginning of first period and date function name
   first.setHours(0);
   if (interval === 'year' || interval === 'month') {
     first.setDate(1);

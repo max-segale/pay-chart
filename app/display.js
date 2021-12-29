@@ -1,4 +1,7 @@
+//import open from 'open';
+
 export function payDisplay(payDates, dateFormat) {
+  let totalAmount = 0;
   // Set date format options
   const dateOptions = {
     year: 'numeric',
@@ -20,9 +23,13 @@ export function payDisplay(payDates, dateFormat) {
     let dateAmount = datePay.pay.
       map((stub) => stub.amount).
       reduce((total, num) => total + num, 0);
+    totalAmount += dateAmount;
     console.log(
       calendar.format(datePay.date),
       dollars.format(dateAmount),
     );
   });
+  console.log('total ' + dollars.format(totalAmount));
+
+  //open('file:///Users/maxwell/pay-chart/dist/index.html');
 }
